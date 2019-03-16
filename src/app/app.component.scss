@@ -1,0 +1,39 @@
+nav {
+  left: -100%;
+  top: 0px;
+  transition: left .5s;
+  z-index: 2;
+}
+nav.is-expanded {
+  left: 0px;
+  transition: left .5s;
+}
+nav p {
+  bottom: 0px;
+  left: 0px;
+}
+.mh-mobile-header {
+  z-index: 1;
+  top: 0;
+  h1 {
+    position:relative;
+    top: 1px;
+  }
+}
+.mh-icon {
+  max-width: 70vh;
+}
+.mh-content {
+  margin-top: 3.5rem;
+}
+@media (min-width: 768px) {
+  nav {
+    left: 0px !important;
+    width: 25% !important;
+  }
+  .mh-content {
+    margin-top: 0;
+    margin-left: 25%;
+  }
+}
+

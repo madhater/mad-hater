@@ -1,0 +1,26 @@
+<main *ngIf="!blogArticle">
+  <section *ngFor="let blog of blogList; first as isFirst" [ngClass]="{'border-top' : !isFirst}">
+    <a [routerLink]="blog.file" class="d-block d-flex text-dark text-decoration-none">
+      <div>
+        <div class="mh-date-icon bg-dark text-white text-center p-2 mr-3">
+          <span class="mh-date-month text-uppercase">{{monthAbbreviations[blog.date.getMonth()]}}</span><br>
+          <span class="mh-date-day">{{blog.date.getDate()}}</span><br>
+          <span class="mn-date-year">{{blog.date.getFullYear()}}</span>
+        </div>
+      </div>
+      <div class="flex-grow-1">
+        <h2 class="h4 mb-1">{{blog.title}}</h2>
+        <p>{{blog.description}}</p>
+      </div>
+    </a>
+  </section>
+</main>
+<main *ngIf="blogArticle">
+  <p class="mb-4">
+    <a [routerLink]="'/blog'" class="text-dark">
+      <i class="material-icons">chevron_left</i>
+      Other Entries
+    </a>
+  </p>
+  <div [innerHTML]="blogArticle"></div>
+</main>

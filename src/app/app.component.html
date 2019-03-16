@@ -1,0 +1,58 @@
+
+
+<header class="position-fixed d-block d-md-none w-100 clear-fix bg-dark text-white mh-mobile-header">
+  <a (click)="$event.preventDefault(); isNavigationExpanded=!isNavigationExpanded"
+    href
+    class="d-block float-left text-decoration-none text-white border-right border-white">
+    <i class="material-icons d-block p-3">menu</i>
+  </a>
+  <h1 class="h5 float-left p-3 m-0 text-uppercase">
+    MadHater / {{pageTitle}}
+  </h1>
+</header>
+
+<nav class="w-100 vh-100 position-fixed bg-dark overflow-auto" [ngClass]="{'is-expanded': isNavigationExpanded}">
+  <div class="min-vh-100 position-relative p-5">
+    <div class="pb-3 text-center">
+      <img class="w-100 mh-icon" src="/assets/images/mad-hater.svg" alt="Mad Hater">
+    </div>
+    <ul class="list-unstyled mb-0">
+      <li>
+        <a [routerLink]="['/resume']"
+          (click)="isNavigationExpanded=false"
+          class="text-decoration-none text-white d-block border-bottom border-white py-2">
+          Resume
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/code']"
+          (click)="isNavigationExpanded=false"
+          class="text-decoration-none text-white d-block border-bottom border-white py-2">
+          Code
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/design']"
+          (click)="isNavigationExpanded=false"
+          class="text-decoration-none text-white d-block border-bottom border-white py-2">
+          Design
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/blog']"
+          (click)="isNavigationExpanded=false"
+          class="text-decoration-none text-white d-block py-2">
+          Blog
+        </a>
+      </li>
+    </ul>
+    <p class="position-absolute w-100 text-white text-center">© 2019 Justin Steele</p>
+  </div>
+</nav>
+
+<main class="px-3 py-4 p-md-5 mh-content">
+  <h1 class="d-none d-block-md pb-5 m-0 text-uppercase">
+    {{pageTitle}}
+  </h1>
+  <router-outlet></router-outlet>
+</main>
