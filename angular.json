@@ -24,7 +24,9 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "azure-web-deploy/Web.config",
+              "azure-web-deploy/Web.Debug.config"
             ],
             "styles": [
               "src/styles.scss"
