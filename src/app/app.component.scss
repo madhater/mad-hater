@@ -40,10 +40,10 @@ nav p {
   }
   nav.is-expanded {
     width: 100% !important;
+    transition: width .5s;
   }
   nav.is-expanded > div {
     max-width: 33vw;
-    transition: width .5s;
     transition: max-width.5s;
   }
 
