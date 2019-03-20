@@ -39,7 +39,7 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
     data: {
-      title: 'Home',
+      title: null,
       isNavigationExpanded: true
     }
   }

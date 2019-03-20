@@ -29,11 +29,27 @@ nav p {
 @media (min-width: 768px) {
   nav {
     left: 0px !important;
-    width: 25% !important;
+    width: 25vw !important;
+    transition: width .5s;
   }
+  nav > div {
+    max-width: 25vw;
+    transition: max-width.5s;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  nav.is-expanded {
+    width: 100% !important;
+  }
+  nav.is-expanded > div {
+    max-width: 33vw;
+    transition: width .5s;
+    transition: max-width.5s;
+  }
+
   .mh-content {
     margin-top: 0;
-    margin-left: 25%;
+    margin-left: 25vw;
   }
 }
 
