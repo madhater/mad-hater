@@ -1,18 +1,15 @@
 
 
 <header class="position-fixed d-block d-md-none w-100 clear-fix bg-dark text-white mh-mobile-header">
-  <a [routerLink]="['/']" class="d-block float-left text-decoration-none text-white">
-    <i class="material-icons d-block p-3">menu</i>
+  <a [routerLink]="['/']" class="d-block text-decoration-none text-white">
+    <i class="material-icons d-block position-absolute p-3">menu</i>
+    <div class="mh-horizontal-icon py-3"><img src="/assets/images/mad-hater-horizontal-01.svg" alt="Mad Hater"></div>
   </a>
-  <h1 class="h5 float-left pt-3 pb-3 m-0 text-uppercase">
-    {{pageTitle}}
-  </h1>
 </header>
-
 <nav class="w-100 vh-100 position-fixed bg-dark overflow-auto" [ngClass]="{'is-expanded': isNavigationExpanded}">
   <div class="min-vh-100 position-relative p-5">
     <a [routerLink]="['/']" class="d-block pb-5 text-center">
-      <img class="w-100 mh-icon" src="/assets/images/mad-hater.svg" alt="Mad Hater">
+      <img class="w-100 mh-icon" src="/assets/images/mad-hater-01.svg" alt="Mad Hater">
     </a>
     <ul class="list-unstyled mb-0">
       <li>
@@ -49,7 +46,7 @@
 </nav>
 
 <main class="p-4 p-md-5 mh-content">
-  <h1 class="d-none d-block-md pb-5 m-0 text-uppercase">
+  <h1 class="h6 mb-4 text-uppercase mh-title">
     {{pageTitle}}
   </h1>
   <router-outlet></router-outlet>

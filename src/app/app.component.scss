@@ -19,6 +19,15 @@ nav p {
     position:relative;
     top: 1px;
   }
+  .mh-horizontal-icon {
+    width:150px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .mh-horizontal-icon img {
+    width:150px;
+    height:24px;
+  }
 }
 .mh-icon {
   max-width: 70vh;

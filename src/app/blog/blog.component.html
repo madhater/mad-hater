@@ -10,17 +10,11 @@
       </div>
       <div class="flex-grow-1">
         <h2 class="h4 mb-1">{{blog.title}}</h2>
-        <p>{{blog.description}}</p>
+        <p class="d-none d-md-block">{{blog.description}}</p>
       </div>
     </a>
   </section>
 </main>
 <main *ngIf="blogArticle">
-  <p class="mb-4">
-    <a [routerLink]="'/blog'" class="text-dark">
-      <i class="material-icons">chevron_left</i>
-      Other Entries
-    </a>
-  </p>
   <div [innerHTML]="blogArticle"></div>
 </main>
