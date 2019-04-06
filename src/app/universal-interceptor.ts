@@ -8,8 +8,8 @@ export class UniversalInterceptor implements HttpInterceptor {
 
   constructor(@Optional() @Inject(REQUEST) protected request: Request) {}
 
-  intercept(req: HttpRequest, next: HttpHandler) {
-    let serverReq: HttpRequest = req;
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    let serverReq: HttpRequest<any> = req;
     if (this.request) {
       let newUrl = `${this.request.protocol}://${this.request.get('host')}`;
       if (!req.url.startsWith('/')) {
