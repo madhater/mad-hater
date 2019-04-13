@@ -5,5 +5,12 @@
     "file": "tyranny-of-now.html",
     "author": "Justin Steele",
     "date": "2019/03/01"
+  },
+  {
+    "title": "API Design is UI Design",
+    "description": "SOA is not an excuse to skip the design process.",
+    "file": "api-design-is-ui-design.html",
+    "author": "Justin Steele",
+    "date": "2019/04/06"
   }
 ]
