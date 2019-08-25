@@ -7,7 +7,7 @@ import { Blog } from './blog.model';
   providedIn: 'root'
 })
 export class BlogService {
-  private blogBasePath = "/assets/blog-articles/";
+  private blogBasePath = "/assets/blog-articles/v2/";
   private blogListURL = this.blogBasePath + "blog-articles.json";
 
   constructor(private http: HttpClient) { }

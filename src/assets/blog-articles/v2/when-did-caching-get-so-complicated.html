@@ -1,0 +1,137 @@
+<section class="pb-3">
+  <h2 class="h5 pb-3 mb-4 border-bottom border-dark text-uppercase font-weight-bold">
+    When did it all get so complicated?
+  </h2>
+  <p>
+    Caching has always been a necessary ends to deliver optimum speed that we 
+    would rather not have to worry about. It’s additional complexity and
+    requirements which can easily go awry. What’s worse is that in modern 
+    development and the ever driving need for speed we have added layers
+    and layers of caching onto our work.
+  </p>
+  <p>
+    On the server it is common to create a cache of commonly requested data
+    objects in memory to allow faster retrieval than reading from the database
+    with every request. The most popular one currently being REDIS I imagine,
+    though there are many alternatives and most languages make it relatively
+    trivial to implement such a feature natively. If there is computationally
+    expensive operations being performed on the server, the results of those
+    operations may also be cached in the same fashion. This was relatively
+    common for caching HTML output to reduce overhead. The long story short
+    is that there may be multiple caching methods and options used within this 
+    tier alone. 
+  </p>
+  <p>
+    In most environments there is a layer between your servers and the users
+    browser and that is the content delivery network (CDN). While not a 
+    requirement, if you want a fast website they basically are. Content delivery
+    networks are essentially third parties which act as a proxy in front of 
+    your servers. As requests go through the CDN, it will observe the rules 
+    you have created for it and create local copies in memory based on a key
+    created from request parameters. When future requests come through for that 
+    resource, the CDN will provide that resource from it’s local cache provided
+    that the local copy doesn’t exceed the length of time its configured to 
+    store that resource. The usefulness of this setup is that the CDN will have
+    locations of it’s servers distributed across the nation (or world) and handle
+    the DNS settings to ensure that a given user makes the shortest network 
+    jump possible to retrieve the content, reducing latency. It should be noted 
+    that CDNs largely only support GET requests, POST, PUT, and DELETE will all 
+    be proxied to your servers for each request barring some more complex setup. 
+  </p>
+  <p>
+    There is also a level of caching provided by browser caching GET 
+    requests based on the cache control headers sent by the server. The most
+    commonly used ones being max-age and no-cache. When max-age is used,
+    a copy of the file is made and stored locally. To reduce future requests, 
+    the browser will use the locally saved copy until the current date is 
+    greater than the max-age provided in the response headers. Once it is 
+    exceeded, the browser will ping the file for it’s last modified date. If 
+    that modified date is greater than that of the locally stored version it 
+    will proceed to make a new request of that file. No-cache is basically
+    the default way to prevent your user’s browser from doing this. 
+  </p>
+  <p>
+    It should be noted that there are limits to the browser cache. There is a
+    hard limit to the overall size of files which it will store locally. If you
+    think about this it’s rather obvious considering it would otherwise mean
+    you were making a copy of the internet everywhere you went. 
+  </p>
+  <p>
+    More recently, there has been yet another instance of cache handling in the 
+    browser using service workers. Service workers are essentially background
+    JavaScript processes which can be used to do things like intercept http
+    requests on their way into and from the browser. This allows for a better
+    level of control than browser cache has allowed, something like use the
+    current stored version and reload the new version in the background. This is 
+    an enormously powerful tool and stands to really improve the options
+    available to front end developers. That said, the proverbial &ldquo;With
+    great power comes great responsibility&rdquo; applies here. It’s very easy 
+    to create an overly complex and fragile solution using this technique and 
+    the frameworks which enable it are still a bit on the cutting edge. 
+  </p>
+  <h3 class="h6 font-weight-bold">So what’s the problem? These all seem like wonderful things!</h3>
+  <p>
+    They are and they aren’t. In theory they are all wonderful and make a better
+    user experience. In practice I’ve found that organizing the layers of cache
+    and understanding their impact on one another and the final output to the
+    user is rushed and not well thought through, leading to issues & bugs that
+    are frankly awful to try and debug if the architecture isn’t documented. 
+    Further, it adds significant weight to onboarding new hires. 
+  </p>
+  <h4 class="h6 font-weight-bold">Problem 1: Little or no documentation</h4>
+  <p>
+    Documentation is important. It is even more important for caching as the
+    implementations may often be invisible to anyone outside of specific teams,
+    only work in production environments, or be written in an aspect oriented
+    manner which makes it less obvious in the code base. All caching mechanisms
+    must be documented. What triggers the object to store in cache? Is it a 
+    chron job? Is it triggered by an action? How does one go about clearing the 
+    cache in an emergency (there will always be an emergency)? How long does the 
+    cache live? Are there tests in place to validate that triggers in fact 
+    cleared the cache? Are there logs? 
+  </p>
+  <p>
+    Taking this a step further, it's also important to understand the flow of
+    data for your web services. Any given service may encounter multiple levels
+    of caching. These operations will need be run in a way where clearing a
+    lower level will automatically trigger higher levels to also clear. If you
+    aren't documenting this flow, you will likely miss these issues. Also,
+    when multiple layers of cache are used, do the time to lives roughly match
+    up? If not, is there a good reason for that?
+  </p>
+  <h4 class="h6 font-weight-bold">Problem 2: Lack of basic understanding</h4>
+  <p>
+    What I’ve found to be uncomfortable common is that many developers don’t 
+    understand how the browser cache works. My favorite being when they’re
+    trying to recreate an issue and they have their dev-tools open. 
+    &ldquo;I can’t recreate the issue.&rdquo;
+    What they fail to realize is that the dev-tools defaults to turning off 
+    browser cache as when developing new things it’s very preferable. It’s an
+    absolute requirement for your developers to know that it exists and how it
+    works. It is the one instance which will universally apply to all things 
+    web related.
+  </p>
+  <p>
+    Make sure that new developers are informed of the different locations where
+    caching is utilized and a heads up of what some potential pitfalls for each
+    are. Ideally this is also covered by the documentation, but there really 
+    isn’t a replacement for good ’ol person to person conversation for 
+    truly teaching.
+  </p>
+  <h4 class="h6 font-weight-bold">Problem 3: Do you need it?</h4>
+  <p>
+    Beware dogmatic approaches to caching. Yes, they do pretty much always 
+    increase speed and that is a good thing, but at what cost? How many 
+    development hours go to support the caching strategy? What are the 
+    measured performance gains of using the caching mechanism? How many bugs 
+    are caused by caching issues and how severe were those issues? These 
+    questions should be asked before implementing each level of cache. Further,
+    they should be reviewed on at least an annual basis to ensure that prior
+    decisions are still relevant. 
+  </p>
+  <p><i>
+    If you aren’t measuring the performance gains provided by your caching
+    strategy, you’re approach is 100% dogmatic. You are doing it with no 
+    real reason or validation. 
+  </i></p>
+</section>

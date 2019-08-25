@@ -12,5 +12,12 @@
     "file": "api-design-is-ui-design.html",
     "author": "Justin Steele",
     "date": "2019/04/06"
+  },
+  {
+    "title": "When did it all get so complicated?",
+    "description": "Thoughts on CDNs, browsers & service workers",
+    "file": "when-did-caching-get-so-complicated.html",
+    "author": "Justin Steele",
+    "date": "2019/08/23"
   }
 ]

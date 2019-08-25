@@ -3,17 +3,17 @@
     API design is UI design
   </h2>
   <p>
-    A recurring problem I've encountered with service oriented architectures
+    A recurring problem I’ve encountered with service oriented architectures
     is a lack of attention to API design. Too often it seems that back end
     developers treat web service authoring as an escape from business
-    requirements, leading to an expectation that they can do what they've
+    requirements, leading to an expectation that they can do what they’ve
     always wanted to do, just write code.
   </p>
   <p>
     The truth is that API design is UI design. To do it right, the same
     design process needs to be followed to ensure it functions well for
-    its entended audience. This may sound extreme as the interpretation
-    of UI is generally a graphical user interface. However, there isn't
+    its intended audience. This may sound extreme as the interpretation
+    of UI is generally a graphical user interface. However, there isn’t
     necessarily a G in UI, leaving us simply with a user interface. API
     stands for application programming interface, but ultimately until AI
     takes over the world, there is often an end user writing code which
@@ -29,62 +29,63 @@
   <h3 class="h6 pb-3 pt-4 mb-4 border-bottom border-dark text-uppercase font-weight-bold">The Process</h3>
   <p>
     <b>Step 1:</b> Know who your users are and communicate with them
-    regularly. Ask questions. What works well? What doesn't? How do we
+    regularly. Ask questions. What works well? What doesn’t? How do we
     get better?
   </p>
   <p>
     <b>Step 2:</b> When need arises for a new service or changes to an
     existing service meet with the intended users. Be careful about
     making assumptions about which of your users might consume the
-    service. If you aren't sure, ask. Don't just jump directly into
-    the code. Make sure to understand your end user's intended goal.
+    service. If you aren’t sure, ask. Don’t just jump directly into
+    the code. Make sure to understand your end user’s intended goal.
     All of them! What are their priorities? Speed? Accuracy?
-    Availability? If you don't know these things, any service you write
-    is going to be a risky adventure with a high liklihood of needing
+    Availability? If you don’t know these things, any service you write
+    is going to be a risky adventure with a high likelihood of needing
     to be rewritten. If this sounds a lot like gathering requirements,
-    well it should. That's what you are doing. SOA isn't a free pass
+    well it should. That’s what you are doing. SOA isn’t a free pass
     to skip this step.
   </p>
   <p>
-    <b>Step 3: </b> Start designing (not coding). If you're doing REST,
+    <b>Step 3: </b> Start designing (not coding). If you’re doing REST,
     start writing out your API endpoints. What are the paths? What do the
-    request and response objects look like? Not doing REST, that's fine
+    request and response objects look like? Not doing REST, that’s fine
     too, but what standard are you following? Is it documented? Are you
     consistently using it? Do you have a review process to ensure it is
-    followed? If you aren't doing these things, likely your services
+    followed? If you aren’t doing these things, likely your services
     live in the wild west. They are probably under utilized, ridden with
     bugs, or you find yourself constantly informing the user that they
     used the service wrong. Side note, if you find yourself telling the
-    user they aren't using a  service correctly on a regular basis, that
+    user they aren’t using a  service correctly on a regular basis, that
     should be a very large warning sign that your design is bad.
   </p>
   <p>
     <b>Step 4: </b> Formal design review the design with end users and
-    other developers. If it doesn't meet the criteria, go back to step 3
+    other developers. If it doesn’t meet the criteria, go back to step 3
     using that feedback. Note that you should be reviewing the design
     with both groups as part of step 3, this is the step where you are
     looking for a formal sign off from the interested parties.
   </p>
   <p>
     <b>Step 5: </b> Now you can start writing code. Since you followed
-    the first four steps, it probably won't suck. Good job.
+    the first four steps, it probably won’t suck. Good job.
   </p>
   <h3 class="h6 pb-3 pt-4 mb-4 border-bottom border-dark text-uppercase font-weight-bold">Examples? Sure Why Not</h3>
+  <h4 class="h6 font-weight-bold">Example 1 / GET</h4>
   <p>
-    <b>REST/GET: api/schoolChecklist/{schoolNumber}/{gender}/{grade}</b>
+    api/schoolChecklist/{schoolNumber}/{gender}/{grade}
   </p>
   <p>
-    What could possibly go wrong with this? For starters it wasn't
+    What could possibly go wrong with this? For starters it wasn’t
     documented well, largely consisting of a use case passed to the front
     end developer:<br>
     api/schoolChecklist/999999999/2/2
   </p>
   <p>
-    Is it clear that grade should be first and gender second? No, it's
+    Is it clear that grade should be first and gender second? No, it’s
     not which is why it resulted in a bug later. This is one that
     could have been simply solved by following actual REST standards.
     For starters, the checklist is a unique artifact to the a school and
-    a specfic grade & gender combination and schools are also necessary
+    a specific grade & gender combination and schools are also necessary
     artifacts.
   </p>
   <p>
@@ -95,15 +96,16 @@
     api/school/999999999/gender/2/grade/2/checklist
   </p>
   <p>
-    The above is quite a bit less likely to be misinterpretted.
+    The above is quite a bit less likely to be misinterpreted.
     It also sets up a much more extensible and discoverable API. It
     should come as no surprise that this is a fundamental goal of REST.
-    Again, REST doesn't have to be the goal, but you should be
-    following in someones footsteps. There's lots of great articles
+    Again, REST doesn’t have to be the goal, but you should be
+    following in someones footsteps. There’s lots of great articles
     out there explaining it and other standards, make use of them.
   </p>
+  <h4 class="h6 font-weight-bold">Example 2 / GET</h4>
   <p>
-    <b>REST/GET: api/reviews?department={department}&category={category}&subCategory={subCategory}</b>
+    api/reviews?department={department}&category={category}&subCategory={subCategory}
   </p>
   <p>
     Unlike the previous example, this is arguable appropriate REST
@@ -113,17 +115,17 @@
     content. The UI this service was supposed to support showed a
     product image, the product name, and a high rated review for that
     product. The review service however took a more literal approach
-    to the review service, and didn't include the product information
+    to the review service, and didn’t include the product information
     necessary for the UI display.
   </p>
   <p>
     Arguably this service could be combined with a product service
-    to derive the display, but that's another round trip before
+    to derive the display, but that’s another round trip before
     the UI could be rendered. There are ways around this too such
     as using an ESB to gather the two disparate services and
     create a new unique service that combines the data sets. The
     problem was that there was no communication. Performance needs
-    were ignored, necessary data wasn't provided, and ultimately
+    were ignored, necessary data wasn’t provided, and ultimately
     those things put the timeline at risk and it became difficult
     to provide a good solution.
   </p>

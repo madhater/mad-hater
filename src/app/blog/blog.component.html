@@ -1,6 +1,6 @@
 <main *ngIf="!blogArticle">
   <section *ngFor="let blog of blogList; first as isFirst" [ngClass]="{'border-top' : !isFirst}">
-    <a [routerLink]="blog.file" class="d-block d-flex text-dark text-decoration-none">
+    <a [routerLink]="blog.file" class="d-block d-flex text-dark text-decoration-none pt-3">
       <div>
         <div class="mh-date-icon bg-dark text-white text-center p-2 mr-3">
           <span class="mh-date-month text-uppercase">{{monthAbbreviations[blog.date.getMonth()]}}</span><br>
