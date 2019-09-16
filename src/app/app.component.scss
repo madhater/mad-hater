@@ -43,7 +43,7 @@ nav p {
   }
   nav > div {
     max-width: 25vw;
-    transition: max-width.5s;
+    transition: max-width .5s;
     margin-left:auto;
     margin-right:auto;
   }
@@ -53,7 +53,7 @@ nav p {
   }
   nav.is-expanded > div {
     max-width: 33vw;
-    transition: max-width.5s;
+    transition: max-width .5s;
   }
 
   .mh-content {

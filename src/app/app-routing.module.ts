@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {
     path: 'blog',
-    loadChildren: './blog/blog.module#BlogModule',
+    loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule),
     data: {
       title: 'Blog',
       isNavigationExpanded: false
@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'code',
-    loadChildren: './code/code.module#CodeModule',
+    loadChildren: () => import('./code/code.module').then(m => m.CodeModule),
     data: {
       title: 'Code',
       isNavigationExpanded: false
@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'design',
-    loadChildren: './design/design.module#DesignModule',
+    loadChildren: () => import('./design/design.module').then(m => m.DesignModule),
     data: {
       title: 'Design',
       isNavigationExpanded: false
@@ -29,7 +29,7 @@ const routes: Routes = [
   },
   {
     path: 'resume',
-    loadChildren: './resume/resume.module#ResumeModule',
+    loadChildren: () => import('./resume/resume.module').then(m => m.ResumeModule),
     data: {
       title: 'Resume',
       isNavigationExpanded: false
