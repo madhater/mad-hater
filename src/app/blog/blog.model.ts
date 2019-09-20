@@ -1,6 +1,6 @@
 export interface Blog {
   title: string;
-  descript: string;
+  description: string;
   html: string;
   author: string;
   date: Date;

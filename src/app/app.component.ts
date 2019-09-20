@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private titleService: Title,    
-    @Inject(DOCUMENT) document, 
+    @Inject(DOCUMENT) private document, 
     private renderer: Renderer2
   ) { }
 
@@ -35,9 +35,9 @@ export class AppComponent implements OnInit {
       this.titleService.setTitle(this.pageTitle.toUpperCase());
       this.isNavigationExpanded = data && data.isNavigationExpanded;
       if(this.isNavigationExpanded) {
-        this.renderer.addClass(document.body, 'overflow-hidden');
+        this.renderer.addClass(this.document.body, 'overflow-hidden');
       } else if(!this.isNavigationExpanded) {
-        this.renderer.removeClass(document.body, 'overflow-hidden');
+        this.renderer.removeClass(this.document.body, 'overflow-hidden');
       }
       // scroll window to top of page (like normal page loads)
       if(typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0,0);
