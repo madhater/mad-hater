@@ -4,4 +4,5 @@ export interface Blog {
   html: string;
   author: string;
   date: Date;
+  file: string;
 }

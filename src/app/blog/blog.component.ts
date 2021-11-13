@@ -11,8 +11,8 @@ export class BlogComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
 
-  blogList: Blog[];
-  blogArticle: Blog;
+  blogList: Blog[] = [];
+  blogArticle: Blog | null = null;
   monthAbbreviations: String[] = [
     "Jan",
     "Feb",
