@@ -3,22 +3,23 @@ import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
   private APP_TITLE = 'MADHATER';
   pageTitle = 'Home';
   isNavigationExpanded = false;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private titleService: Title,    
-    @Inject(DOCUMENT) private document, 
+    @Inject(DOCUMENT) private document: any, 
     private renderer: Renderer2
   ) { }
 
@@ -27,7 +28,8 @@ export class AppComponent implements OnInit {
       filter(event => event instanceof NavigationEnd),
       map(() => this.activatedRoute),
       map(route => route.firstChild),
-      switchMap(route => route.data)
+      switchMap(routeRoot => routeRoot?.data || of(null)),
+      filter(data => !!data)
     )
     .subscribe(data => {
       this.pageTitle = this.APP_TITLE;
@@ -39,8 +41,6 @@ export class AppComponent implements OnInit {
       } else if(!this.isNavigationExpanded) {
         this.renderer.removeClass(this.document.body, 'overflow-hidden');
       }
-      // scroll window to top of page (like normal page loads)
-      if(typeof window !== 'undefined' && window.scrollTo) window.scrollTo(0,0);
     })
   }
 }
