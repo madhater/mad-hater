@@ -38,7 +38,6 @@ stages:
     - script: |
         npm install
         npm run build:ssr --if-present
-        npm run serve:ssr --if-present
       displayName: 'npm install, build and test'
 
     - task: ArchiveFiles@2
