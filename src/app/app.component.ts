@@ -3,7 +3,8 @@ import { Component, Inject, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { RouteAddonsService } from './services/route-addons.service';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +12,22 @@ import { of } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  private APP_TITLE = 'MADHATER';
-  pageTitle = 'Home';
+  heading$: Observable<string> = this.routeAddonsService.getHeading();
   isNavigationExpanded = false;
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private titleService: Title,    
     @Inject(DOCUMENT) private document: any, 
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private routeAddonsService: RouteAddonsService,
   ) { }
 
   ngOnInit() {
+    this.routeAddonsService.getMetadata().subscribe(metaData => {
+      console.log('metaData', metaData);
+    });
+
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       map(() => this.activatedRoute),
@@ -32,9 +36,6 @@ export class AppComponent implements OnInit{
       filter(data => !!data)
     )
     .subscribe(data => {
-      this.pageTitle = this.APP_TITLE;
-      if(data && data.title) this.pageTitle = `${this.APP_TITLE} / ${data.title}`;
-      this.titleService.setTitle(this.pageTitle.toUpperCase());
       this.isNavigationExpanded = data && data.isNavigationExpanded;
       if(this.isNavigationExpanded) {
         this.renderer.addClass(this.document.body, 'overflow-hidden');
