@@ -1,8 +1,8 @@
 import { Inject, Injectable, Optional } from '@angular/core';
-import { Router, RouterEvent, Event, ActivatedRouteSnapshot, ActivationEnd } from '@angular/router';
-import { filter, tap } from 'rxjs/operators';
-import {Response} from 'express';
-import {RESPONSE} from '@nguniversal/express-engine/tokens';
+import { Router, Event, ActivatedRouteSnapshot, ActivationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { Response } from 'express';
+import { RESPONSE } from '@nguniversal/express-engine/tokens';
 import { Subject } from 'rxjs';
 import { Metadata } from './metadata.interface';
 import { RouteData } from './route-data.interface';
@@ -41,7 +41,7 @@ export class RouteAddonsService {
       if(response && httpStatus !== HttpStatusCode.Ok) {
         response.status(httpStatus);
       }
-   });
+    });
   }
 
   public getMetadata() {
