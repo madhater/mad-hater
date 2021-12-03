@@ -22,7 +22,7 @@ export class BlogService {
         catchError(error => {
           console.error(error);
           this.router.navigate(['not-found']);
-          return []
+          return [];
         }),
         map(blogList => {
           for(let blog of blogList) {
