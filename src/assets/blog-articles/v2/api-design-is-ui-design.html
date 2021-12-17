@@ -59,8 +59,8 @@
     should be a very large warning sign that your design is bad.
   </p>
   <p>
-    <b>Step 4: </b> Formal design review the design with end users and
-    other developers. If it doesn’t meet the criteria, go back to step 3
+    <b>Step 4: </b> Formal design review with end users and other 
+    developers. If it doesn’t meet the criteria, go back to step 3
     using that feedback. Note that you should be reviewing the design
     with both groups as part of step 3, this is the step where you are
     looking for a formal sign off from the interested parties.
@@ -115,14 +115,14 @@
     content. The UI this service was supposed to support showed a
     product image, the product name, and a high rated review for that
     product. The review service however took a more literal approach
-    to the review service, and didn’t include the product information
-    necessary for the UI display.
+    and only included the high rated review and didn’t include the 
+    product information necessary for the UI display.
   </p>
   <p>
     Arguably this service could be combined with a product service
     to derive the display, but that’s another round trip before
     the UI could be rendered. There are ways around this too such
-    as using an ESB to gather the two disparate services and
+    as using an ESB or BFF to gather the two disparate services and
     create a new unique service that combines the data sets. The
     problem was that there was no communication. Performance needs
     were ignored, necessary data wasn’t provided, and ultimately
