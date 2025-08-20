@@ -29,7 +29,7 @@ jobs:
         result-encoding: string
         script: |
           const getIncrementType = () => {
-            const message = context.head_commit.message;
+            const message = context.event.head_commit.message;
             if (message.startsWith('MAJOR')) {
               return 'MAJOR';
             } else if (message.startsWith('MINOR')) {
