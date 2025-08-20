@@ -1,0 +1,15 @@
+@for (blog of blogList$ | async; track blog.file;) {
+  <section>
+    <a [routerLink]="blog.file">
+      <div class="mh-date-icon">
+        <div class="mh-date-month">{{monthAbbreviations[blog.date.getMonth()]}}</div>
+        <div class="mh-date-day">{{blog.date.getDate()}}</div>
+        <div class="mh-date-year">{{blog.date.getFullYear()}}</div>
+      </div>
+      <div class="mh-blog-label">
+        <h2>{{blog.title}}</h2>
+        <p>{{blog.description}}</p>
+      </div>
+    </a>
+  </section>
+}

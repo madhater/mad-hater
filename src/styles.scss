@@ -1,65 +1,64 @@
-/*!
- * Bootstrap v5.0.2 (https://getbootstrap.com/)
- * Copyright 2011-2021 The Bootstrap Authors
- * Copyright 2011-2021 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --spacing-xs: .25rem;
+  --spacing-sm: .5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-xxl: 3rem;
 
-// scss-docs-start import-stack
-// Configuration
-@import "~bootstrap/scss/functions";
-@import "./shared/scss/variables";
-@import "~bootstrap/scss/mixins";
-@import "~bootstrap/scss/utilities";
+  --font-size-xs: .75rem;
+  --font-size-sm: .9rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.3rem;
+  --font-size-xl: 1.6rem;
+  --font-size-xxl: 2rem;
 
-// Layout & components
-@import "~bootstrap/scss/root";
-@import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/type";
-@import "~bootstrap/scss/images";
-@import "~bootstrap/scss/containers";
-@import "~bootstrap/scss/grid";
-// @import "~bootstrap/scss/tables";
-// @import "~bootstrap/scss/forms";
-// @import "~bootstrap/scss/buttons";
-// @import "~bootstrap/scss/transitions";
-// @import "~bootstrap/scss/dropdown";
-// @import "~bootstrap/scss/button-group";
-// @import "~bootstrap/scss/nav";
-// @import "~bootstrap/scss/navbar";
-// @import "~bootstrap/scss/card";
-// @import "~bootstrap/scss/accordion";
-// @import "~bootstrap/scss/breadcrumb";
-// @import "~bootstrap/scss/pagination";
-// @import "~bootstrap/scss/badge";
-// @import "~bootstrap/scss/alert";
-// @import "~bootstrap/scss/progress";
-// @import "~bootstrap/scss/list-group";
-// @import "~bootstrap/scss/close";
-// @import "~bootstrap/scss/toasts";
-// @import "~bootstrap/scss/modal";
-// @import "~bootstrap/scss/tooltip";
-// @import "~bootstrap/scss/popover";
-//@import "~bootstrap/scss/carousel";
-//@import "~bootstrap/scss/spinners";
-//@import "~bootstrap/scss/offcanvas";
+  --max-content-width: 700px;
+}
 
-// Helpers
-@import "~bootstrap/scss/helpers";
+* {
+  box-sizing: border-box;
+}
 
-// Utilities
-@import "~bootstrap/scss/utilities/api";
-// scss-docs-end import-stack
+html, body {
+  font-size: var(--font-size-md);
+  font-weight: 400;
+  font-family: 'Amiri', serif;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: .3em;
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--font-size-md);
+  margin: 0 0 var(--spacing-lg) 0;
+}
 
 ul, ol {
   padding-inline-start: 20px;
+  margin: 0;
 }
-.h1, .h2, .h3, .h4, .h5 {
-  letter-spacing:.3em;
-}
+
 a {
   text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
-a:hover {
-  text-decoration: underline;
+
+section {
+  margin: 0 0 var(--spacing-xxl) 0;
+}
+
+p {
+  margin: 0;
 }

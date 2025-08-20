@@ -1,0 +1,66 @@
+name: Build
+on:
+  push:
+    branches:
+      - angular-20
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+      
+    - name: npm install
+      run: npm ci
+
+    - name: npm test
+      run: npm test
+
+    - name: Get Release Version
+      id: release-version
+      uses: uses: actions/github-script@v7
+      with: 
+        script: |
+          console.log('context', JSON.stringify(context));
+          const getCurrentReleaseVersion = () => {
+            try {
+              const latestRelease = github.rest.getLatestRelease({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+              });
+              const [major, minor, patch] = version.replace('v', '').split('.').map(Number);
+              return { major, minor, patch };
+            } catch(e) {
+              return { major: 1, minor: 0, patch: 0 };
+            }
+          }
+          return getCurrentReleaseVersion();
+          
+          
+    
+    - name: Get New Release Version
+      id: new-release-version
+      run: |
+        echo "${{ steps.release-version.outputs }}"
+    
+    - name: Publish Release
+      env:
+        GH_TOKEN: ${{ github.token }}
+        GH_REPO: ${{ github.repository }}
+      run: gh release create "${{ needs.release.outputs.tag }}" --draft=false
+
+
+## octokit.rest.repos.createRelease({
+##  owner,
+##  repo,
+## tag_name,
+##});

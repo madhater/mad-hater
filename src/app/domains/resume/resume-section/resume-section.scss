@@ -1,0 +1,34 @@
+h4 {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: 
+    'date date'
+    'title location';
+  margin: 0;
+
+  .date {
+    grid-area: date;
+    font-weight: 400;
+  }
+  .title {
+    grid-area: title;
+    text-transform: uppercase;
+  }
+  .location {
+    grid-area: location;
+    text-align: right;
+    font-weight: 400;
+  }
+}
+
+@media (min-width: 768px) {
+  h4 {
+    grid-template-columns: 25% 1fr auto;
+    grid-template-areas: 'date title location';
+  }
+
+  .body {
+    margin: 0 0 var(--spacing-lg) 25%;
+  }
+}

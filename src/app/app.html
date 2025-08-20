@@ -1,0 +1,35 @@
+<header class="mh-header">
+  <a (click)="isNavigationExpanded$$.set(true)">
+    <div class="mh-menu-icon">menu</div>
+    <div class="mh-horizontal-icon"><img src="/images/mad-hater-horizontal-01.svg" alt="Mad Hater"></div>
+  </a>
+</header>
+<nav class="mh-nav" [class]="{ 'is-expanded': isNavigationExpanded$$() }">
+  <div class="mh-nav-content">
+    <img class="mh-icon" src="/images/mad-hater-01.svg" alt="Mad Hater">
+    <ul>
+      <li>
+        <a [routerLink]="['/resume']" (click)="isNavigationExpanded$$.set(false)">Resume</a>
+      </li>
+      <li>
+        <a [routerLink]="['/code']" (click)="isNavigationExpanded$$.set(false)">Code</a>
+      </li>
+      <li>
+        <a [routerLink]="['/design']" (click)="isNavigationExpanded$$.set(false)">Design</a>
+      </li>
+      <li>
+        <a [routerLink]="['/blog']" (click)="isNavigationExpanded$$.set(false)">Blog</a>
+      </li>
+    </ul>
+    <p class="mh-copyright">© {{ currentYear }} Justin Steele</p>
+  </div>
+</nav>
+
+<div class="mh-content">
+  <main>
+    <h1 class="mh-title">
+      {{ heading$$() }}
+    </h1>
+    <router-outlet></router-outlet>
+  </main>
+</div>
