@@ -28,7 +28,6 @@ jobs:
       with: 
         result-encoding: string
         script: |
-          console.log(JSON.stringify(context.payload));
           const getIncrementType = () => {
             const message = context.payload.head_commit.message;
             if (message.startsWith('MAJOR')) {
@@ -64,7 +63,12 @@ jobs:
       env:
         GH_TOKEN: ${{ github.token }}
         GH_REPO: ${{ github.repository }}
-      run: gh release create "${{ steps.release-version.outputs.result }}" --draft=false
+      run: |
+        gh release create "${{ steps.release-version.outputs.result }}" --draft=false
+        cd dist
+        zip mad-hater mad-hater.zip
+        cd ../
+        gh release upload "${{ steps.release-version.outputs.result }} dist/mad-hater.zip
 
 ## octokit.rest.repos.createRelease({
 ##  owner,

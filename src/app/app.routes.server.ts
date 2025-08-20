@@ -7,6 +7,10 @@ export const serverRoutes: ServerRoute[] = [
     status: 404
   },
   {
+    path: 'blog/:blogFileName',
+    renderMode: RenderMode.Server
+  },
+  {
     path: '**',
     renderMode: RenderMode.Prerender
   }
