@@ -43,9 +43,7 @@ jobs:
               return { major: 1, minor: 0, patch: 0 };
             }
           }
-          return getCurrentReleaseVersion();
-          
-          
+          return getCurrentReleaseVersion();          
     
     - name: Get New Release Version
       id: new-release-version
@@ -57,7 +55,6 @@ jobs:
         GH_TOKEN: ${{ github.token }}
         GH_REPO: ${{ github.repository }}
       run: gh release create "${{ needs.release.outputs.tag }}" --draft=false
-
 
 ## octokit.rest.repos.createRelease({
 ##  owner,
