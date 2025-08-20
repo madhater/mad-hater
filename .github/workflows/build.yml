@@ -28,9 +28,9 @@ jobs:
       with: 
         result-encoding: string
         script: |
-          console.log(JSON.stringify(context));
+          console.log(JSON.stringify(context.payload));
           const getIncrementType = () => {
-            const message = context.event.head_commit.message;
+            const message = context.payload.head_commit.message;
             if (message.startsWith('MAJOR')) {
               return 'MAJOR';
             } else if (message.startsWith('MINOR')) {
