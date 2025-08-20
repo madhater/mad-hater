@@ -37,11 +37,11 @@ jobs:
             }
             return 'PATCH';
           }
-          const getReleaseVersion = () => {
+          const getReleaseVersion = async () => {
             const incrementType = getIncrementType();
             console.log('incrementType', incrementType);
             try {
-              const latestRelease = github.rest.getLatestRelease({
+              const latestRelease = await github.rest.getLatestRelease({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
               });
