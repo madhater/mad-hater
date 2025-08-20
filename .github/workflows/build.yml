@@ -60,16 +60,11 @@ jobs:
           }
           return getReleaseVersion();
     
-    - name: Get New Release Version
-      id: new-release-version
-      run: |
-        echo "${{ steps.release-version.outputs }}"
-    
     - name: Publish Release
       env:
         GH_TOKEN: ${{ github.token }}
         GH_REPO: ${{ github.repository }}
-      run: gh release create "${{ needs.release.outputs.tag }}" --draft=false
+      run: gh release create "${{ steps.release-version.outputs.result }}" --draft=false
 
 ## octokit.rest.repos.createRelease({
 ##  owner,
