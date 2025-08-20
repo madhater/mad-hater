@@ -39,21 +39,26 @@ jobs:
           }
           const incrementType = getIncrementType();
           console.log('incrementType', incrementType);
-          const latestRelease = await github.rest.getLatestRelease({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-          });
-          console.log('latestRelease', JSON.stringify(latestRelease));
-          const [major, minor, patch] = latestRelease.name.replace('v', '').split('.').map(Number);
-          console.log([major, minor, patch]);
-          if (incrementType === 'MAJOR') {
-            major++;
-          } else if (incrementType === 'MINOR') {
-            minor++;
-          } else {
-            patch++;
+          try {
+            const latestRelease = await github.rest.repos.getLatestRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
+            console.log('latestRelease', JSON.stringify(latestRelease));
+            const [major, minor, patch] = latestRelease.name.replace('v', '').split('.').map(Number);
+            console.log([major, minor, patch]);
+            if (incrementType === 'MAJOR') {
+              major++;
+            } else if (incrementType === 'MINOR') {
+              minor++;
+            } else {
+              patch++;
+            }
+            return `v${major}.${minor}.${path}`;
+          } catch(e) {
+            console.log(e);
+            return 'v1.0.0';
           }
-          return `v${major}.${minor}.${path}`;
     
     - name: Publish Release
       env:
