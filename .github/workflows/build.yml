@@ -28,6 +28,7 @@ jobs:
       with: 
         result-encoding: string
         script: |
+          console.log(JSON.stringify(context));
           const getIncrementType = () => {
             const message = context.event.head_commit.message;
             if (message.startsWith('MAJOR')) {
