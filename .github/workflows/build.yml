@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
 
     steps:
     - uses: actions/checkout@v4
@@ -44,7 +41,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             });
-            console.log('latestRelease', JSON.stringify(latestRelease));
+            console.log('latestRelease', latestRelease.tag_name, latestRelease.name);
             const [major, minor, patch] = latestRelease.name.replace('v', '').split('.').map(Number);
             console.log([major, minor, patch]);
             if (incrementType === 'MAJOR') {
