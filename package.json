@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:build": "ng test --watch=false --browsers=ChromeHeadless",
     "serve:ssr:mad-hater": "node dist/mad-hater/server/server.mjs"
   },
   "prettier": {

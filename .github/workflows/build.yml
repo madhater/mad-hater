@@ -19,6 +19,12 @@ jobs:
     - name: npm install
       run: npm ci
 
+    - name: npm test
+      run: npm test:build
+
+    - name: npm build
+      run: npm build
+
     - name: Get Release Version
       id: release-version
       uses: actions/github-script@v7
@@ -35,15 +41,13 @@ jobs:
             return 'PATCH';
           }
           const incrementType = getIncrementType();
-          console.log('incrementType', incrementType);
           try {
             const latestRelease = await github.rest.repos.getLatestRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
             });
-            console.log('latestRelease', JSON.stringify(latestRelease.data));
-            const [major, minor, patch] = latestRelease.name.replace('v', '').split('.').map(Number);
-            console.log([major, minor, patch]);
+            const tagName = latestRelease.data.tag_name;
+            const [major, minor, patch] = tagName.replace('v', '').split('.').map(Number);
             if (incrementType === 'MAJOR') {
               major++;
             } else if (incrementType === 'MINOR') {
