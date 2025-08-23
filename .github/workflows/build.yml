@@ -41,7 +41,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             });
-            console.log('latestRelease', latestRelease.tag_name, latestRelease.name);
+            console.log('latestRelease', JSON.stringify(latestRelease));
             const [major, minor, patch] = latestRelease.name.replace('v', '').split('.').map(Number);
             console.log([major, minor, patch]);
             if (incrementType === 'MAJOR') {
