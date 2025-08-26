@@ -15,7 +15,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class BlogArticle {
   private activatedRoute = inject(ActivatedRoute);
-  public blogArticle$: Observable<IBlog>;
+  public blogArticle$: Observable<string>;
 
   constructor() {
     this.blogArticle$ = this.activatedRoute.data.pipe(map((data) => data['blogArticle'] ?? null));
