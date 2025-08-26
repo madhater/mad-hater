@@ -47,7 +47,7 @@ jobs:
               repo: context.repo.repo,
             });
             const tagName = latestRelease.data.tag_name;
-            const [major, minor, patch] = tagName.replace('v', '').split('.').map(Number);
+            let [major, minor, patch] = tagName.replace('v', '').split('.').map(Number);
             if (incrementType === 'MAJOR') {
               major++;
             } else if (incrementType === 'MINOR') {
