@@ -55,7 +55,7 @@ jobs:
             } else {
               patch++;
             }
-            return `v${major}.${minor}.${path}`;
+            return `v${major}.${minor}.${patch}`;
           } catch(e) {
             console.log(e);
             return 'v1.0.0';
