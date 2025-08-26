@@ -1,0 +1,58 @@
+section {
+  max-width: 700px;
+  margin: 0 0 var(--spacing-xl) 0;
+  border-bottom: 1px solid #000;
+
+  a {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+      'date label';
+    text-decoration: none;
+    column-gap: var(--spacing-md);
+  }  
+}
+section:last-child {
+  border-bottom: none;
+}
+
+.mh-date-icon {
+  color: #FFF;
+  background-color: #000;
+  text-align: center;
+  padding: var(--spacing-sm);
+  grid-area: date;
+  line-height: 100%;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: var(--font-size-xs);
+  height: 65px;
+  width: 65px;
+  margin-bottom: var(--font-size-md);
+
+  .mh-date-day {
+    padding: 4px 0;
+    font-size: var(--font-size-lg)
+  }
+}
+
+.mh-blog-label {
+  grid-area: label;
+  color: #000;
+  margin-bottom: var(--font-size-md);
+
+  h2 {
+    text-transform: none;
+    line-height: 140%;
+    margin-top: -4px;
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  h2 {
+    line-height: 120%;
+    font-size: var(--font-size-xl);
+  }
+}

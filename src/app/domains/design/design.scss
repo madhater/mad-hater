@@ -1,0 +1,18 @@
+.design-description {
+  background-color: #EEE;
+  max-width: 700px;
+  position:relative;
+}
+.design-description::before {
+  content: "";
+  background-color: #EEE;
+  height: 20px;
+  width: 20px;
+  transform: rotate(45deg);
+  position: absolute;
+  top: -7px;
+  left: 15px;
+}
+.design-description p {  
+  position: relative;
+}

@@ -1,0 +1,70 @@
+.mh-resume-heading {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:     
+    'contact'
+    'download';
+    
+
+  .mh-resume-heading-contact {
+    grid-area: contact;
+  }
+
+  .mh-resume-heading-download {
+    grid-area: download;
+    margin-top: var(--spacing-md);
+    a {
+      color: #0d6efd;
+    }
+  }
+
+  h2 {
+    font-size: var(--font-size-lg);
+    text-transform: uppercase;
+    letter-spacing: .3em;
+    font-weight: 400;
+  }
+
+  a {
+    color: #000;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+section {
+  max-width: var(--max-content-width);
+
+  h3 {
+    font-size: var(--font-size-lg);
+    border-bottom: 1px solid #000;
+    padding-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+@media (min-width: 768px) {
+  .mh-resume-heading {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto;
+    grid-template-areas: 
+      'contact download';
+
+    h2 {
+      font-size: var(--font-size-xl);
+    }
+
+    .mh-resume-heading-download {
+      margin-top: 4px;
+    }
+  }
+  
+
+  .mh-resume-skills {
+    column-count: 3;
+    column-gap: var(--spacing-sm);
+  }
+}
