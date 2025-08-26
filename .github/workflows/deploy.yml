@@ -1,0 +1,33 @@
+name: Release
+on:
+  release:
+  - types: [created]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Retrieve Release asset
+      env:
+        GH_TOKEN: ${{ github.token }}
+        GH_REPO: ${{ github.repository }}
+      run: |
+        gh release download "${{ github.event.release.assets[0].url }}" --draft=false
+        unzip "mad-hater.zip"
+        rm "mad-hater.zip"
+
+    - name: Login to Azure
+      uses: azure/login@v2
+      with:
+        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_DF74B35DBC8F4B378AD73D8D2FE6B1D1 }}
+        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_F38418C20FC245BA902FDC4AFE03F52B }}
+        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_38E57D430B0F4178ACFB51B77D2DB900 }}
+
+    - name: 'Deploy to Azure Web App'
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v3
+      with:
+        app-name: 'mad-hater-fe'
+        slot-name: 'Production'
+        package: .
