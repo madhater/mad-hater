@@ -68,6 +68,6 @@ jobs:
       run: |
         gh release create "${{ steps.release-version.outputs.result }}" --draft=false
         cd dist
-        zip -r mad-hater mad-hater.zip
+        zip -r mad-hater.zip mad-hater
         cd ../
         gh release upload "${{ steps.release-version.outputs.result }} dist/mad-hater.zip
