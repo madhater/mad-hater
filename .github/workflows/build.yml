@@ -22,8 +22,8 @@ jobs:
     - name: npm test
       run: npm run test:build
 
-    - name: npm build
-      run: npm build
+    - name: npm run build
+      run: npm run build
 
     - name: Get Release Version
       id: release-version
@@ -71,9 +71,3 @@ jobs:
         zip mad-hater mad-hater.zip
         cd ../
         gh release upload "${{ steps.release-version.outputs.result }} dist/mad-hater.zip
-
-## octokit.rest.repos.createRelease({
-##  owner,
-##  repo,
-## tag_name,
-##});
