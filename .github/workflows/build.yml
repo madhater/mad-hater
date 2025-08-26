@@ -70,4 +70,4 @@ jobs:
         cd dist
         zip -r mad-hater.zip mad-hater
         cd ../
-        gh release upload "${{ steps.release-version.outputs.result }} dist/mad-hater.zip
+        gh release upload "${{ steps.release-version.outputs.result }}" dist/mad-hater.zip
