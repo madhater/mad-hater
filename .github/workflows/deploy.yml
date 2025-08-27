@@ -25,14 +25,14 @@ jobs:
       with: 
         result-encoding: string
         script: |
-          console.log(releaseId, core.getInput('releaseId'));
+          console.log('releaseId', core.getInput('releaseId', { required: true }));
           if (!core.getInput('releaseId', { required: true })) {
             core.error('missing releaseId');
           }
           const release = await github.rest.repos.getRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              release_id: core.getInput('releaseId')
+              release_id: core.getInput('releaseId', { required: true })
             });
           return release.assets[0].url;
 
