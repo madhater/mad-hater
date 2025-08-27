@@ -25,12 +25,12 @@ jobs:
       with: 
         result-encoding: string
         script: |
-          const latestRelease = await github.rest.repos.getRelease({
+          const release = await github.rest.repos.getRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              releaseId: core.inputs.version
+              releaseId: core.inputs.releaseId
             });
-          return latestRelease.assets[0].url;
+          return release.assets[0].url;
 
     - name: Retrieve Release asset
       env:
