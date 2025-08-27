@@ -31,7 +31,7 @@ jobs:
               tag: core.getInput('tag', { required: true })
             });
           
-          const asset = release.assets[0];
+          const asset = release.data.assets[0];
           if (!asset) {
             throw new Error('Asset not found');
           }
