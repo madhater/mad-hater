@@ -19,11 +19,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Retrieve Release Asset
-      id: release-asset-url     
+    - name: Retrieve Release Asset Url
+      id: release-asset-details
       uses: actions/github-script@v7
       with: 
-        result-encoding: string
         tag: ${{ inputs.tag }}
         script: |
           const release = await github.rest.repos.getReleaseByTag({
@@ -31,17 +30,25 @@ jobs:
               repo: context.repo.repo,
               tag: core.getInput('tag', { required: true })
             });
-          await github.rest.repos.getReleaseAsset({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              asset_id: release.data.assets[0].id
-            });
+          
+          const asset = release.assets[0];
+          if (!asset) {
+            throw new Error('Asset not found');
+          }
 
-    - name: Unzip Release asset
+          core.setOutput('url', asset.url);
+          core.setOutput('name', asset.name);
+
+    - name: Retrieve Release asset
       env:
         GH_TOKEN: ${{ github.token }}
         GH_REPO: ${{ github.repository }}
       run: |
+        curl -L \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/octet-stream" \
+          "${{ steps.release-asset-details.outputs.url }}" \
+          -o "${{ steps.release-asset-details.outputs.name }}"
         unzip "mad-hater.zip"
         rm "mad-hater.zip"
 
