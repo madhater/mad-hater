@@ -2,14 +2,14 @@ name: Release
 on:
   workflow_call:
     inputs: 
-      releaseId:
+      release_id:
         description: 'Release ID to publish'
         required: true
         type: string
   
   workflow_dispatch:
     inputs: 
-      releaseId:
+      release_id:
         description: 'Release ID to publish'
         required: true
         type: string
@@ -25,14 +25,14 @@ jobs:
       with: 
         result-encoding: string
         script: |
-          console.log('releaseId', core.getInput('releaseId', { required: true }));
-          if (!core.getInput('releaseId', { required: true })) {
-            core.error('missing releaseId');
+          console.log('release_id', core.getInput('release_id', { required: true }));
+          if (!core.getInput('release_id', { required: true })) {
+            core.error('missing release_id');
           }
           const release = await github.rest.repos.getRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              release_id: core.getInput('releaseId', { required: true })
+              release_id: core.getInput('release_id', { required: true })
             });
           return release.assets[0].url;
 
