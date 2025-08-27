@@ -1,9 +1,13 @@
 {
   "name": "mad-hater",
   "version": "0.0.0",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server/server.mjs",
+    "start:dev": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
