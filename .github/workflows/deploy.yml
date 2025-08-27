@@ -24,8 +24,7 @@ jobs:
       uses: actions/github-script@v7
       with: 
         result-encoding: string
-        with: 
-          release_id: ${{ inputs.release_id }}
+        release_id: ${{ inputs.release_id }}
         script: |
           console.log('release_id', core.getInput('release_id', { required: true }));
           if (!core.getInput('release_id', { required: true })) {
