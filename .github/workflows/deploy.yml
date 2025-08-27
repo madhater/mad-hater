@@ -28,7 +28,7 @@ jobs:
           const latestRelease = await github.rest.repos.getRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              releaseId: inputs.version
+              releaseId: core.inputs.version
             });
           return latestRelease.assets[0].url;
 
