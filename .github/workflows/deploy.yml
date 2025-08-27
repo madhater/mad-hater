@@ -31,9 +31,9 @@ jobs:
               repo: context.repo.repo,
               tag: core.getInput('tag', { required: true })
             });
-          octokit.rest.repos.getReleaseAsset({
-              owner,
-              repo,
+          await github.rest.repos.getReleaseAsset({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               asset_id: release.data.assets[0].id
             });
 
