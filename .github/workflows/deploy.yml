@@ -26,7 +26,7 @@ jobs:
         result-encoding: string
         script: |
           console.log(releaseId, core.getInput('releaseId'));
-          if (!core.getInput('releaseId')) {
+          if (!core.getInput('releaseId', { required: true })) {
             core.error('missing releaseId');
           }
           const release = await github.rest.repos.getRelease({
