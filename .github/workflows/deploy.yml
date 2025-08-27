@@ -31,7 +31,8 @@ jobs:
               repo: context.repo.repo,
               tag: core.getInput('tag', { required: true })
             });
-          return release.assets[0].url;
+          console.log(release.data)
+          return release.data.assets[0].url;
 
     - name: Retrieve Release asset
       env:
