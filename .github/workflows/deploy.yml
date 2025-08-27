@@ -13,6 +13,8 @@ on:
         description: 'Release ID to publish'
         required: true
         type: string
+env:
+  NODE_VERSION: '22.x'  
 
 jobs:
   release:
