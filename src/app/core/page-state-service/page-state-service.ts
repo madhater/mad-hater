@@ -36,6 +36,7 @@ export class PageStateService {
   private _retrieveLowestRouteData(route: ActivatedRouteSnapshot, data: IRouteData): IRouteData {
     data.heading = route.data['heading'] ?? data.heading;
     data.metadata = route.data['metadata'] ?? data.metadata;
+    data.isNavigationExpanded = route.data['isNavigationExpanded'] ?? data.isNavigationExpanded;
     if(route?.firstChild) {
       return this._retrieveLowestRouteData(route.firstChild, data)
     }

@@ -1,12 +1,12 @@
 <header class="mh-header">
-  <a (click)="isNavigationExpanded$$.set(true)">
+  <a href="javascript:void;" (click)="isNavigationExpanded$$.set(true)">
     <div class="mh-menu-icon">menu</div>
     <div class="mh-horizontal-icon"><img src="/images/mad-hater-horizontal-01.svg" alt="Mad Hater"></div>
   </a>
 </header>
 <nav class="mh-nav" [class]="{ 'is-expanded': isNavigationExpanded$$() }">
   <div class="mh-nav-content">
-    <img class="mh-icon" src="/images/mad-hater-01.svg" alt="Mad Hater">
+    <a href="javascript:void;" (click)="isNavigationExpanded$$.set(true)"><img class="mh-icon" src="/images/mad-hater-01.svg" alt="Mad Hater"></a>
     <ul>
       <li>
         <a [routerLink]="['/resume']" (click)="isNavigationExpanded$$.set(false)">Resume</a>
