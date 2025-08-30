@@ -90,6 +90,7 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/deploy.yml
+    secrets: inherit
     with:
       tag: "v${{ needs.build.outputs.version }}"
 
