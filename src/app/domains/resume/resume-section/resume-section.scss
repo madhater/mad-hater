@@ -1,10 +1,13 @@
+:host {
+  display: block;
+}
 h4 {
   display: grid;
   grid-template-rows: auto auto;
   grid-template-columns: 1fr auto;
   grid-template-areas: 
-    'date date'
-    'title location';
+    'date location'
+    'title title';
   margin: 0;
 
   .date {

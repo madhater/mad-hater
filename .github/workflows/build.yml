@@ -84,3 +84,9 @@ jobs:
         zip -r ../mad-hater.zip *
         cd ../../
         gh release upload "v${{ steps.release-version.outputs.result }}" dist/mad-hater.zip
+
+    - name: Deploy Release
+      uses: .github/workflows/deploy.yml
+      with:
+        tag: "v${{ steps.release-version.outputs.result }}"
+

@@ -1,3 +1,10 @@
+
+h2 {
+  font-size: var(--font-size-lg);
+  border-bottom: 1px solid #000;
+  padding-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
 .design-description {
   background-color: #EEE;
   max-width: 700px;
@@ -15,4 +22,5 @@
 }
 .design-description p {  
   position: relative;
+  padding: var(--spacing-md);
 }
