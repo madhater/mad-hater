@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.release-version.outputs.result }}
 
     steps:
     - uses: actions/checkout@v4
@@ -85,8 +87,9 @@ jobs:
         cd ../../
         gh release upload "v${{ steps.release-version.outputs.result }}" dist/mad-hater.zip
 
-    - name: Deploy Release
-      uses: ./.github/workflows/deploy.yml
-      with:
-        tag: "v${{ steps.release-version.outputs.result }}"
+  deploy:
+    needs: build
+    uses: ./.github/workflows/deploy.yml
+    with:
+      tag: "v${{ needs.build.outputs.version }}"
 
