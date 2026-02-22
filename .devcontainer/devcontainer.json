@@ -1,0 +1,14 @@
+{
+  "name": "mad-hater",
+  "build": { "dockerfile": "./Dockerfile" },
+  "containerUser": "node",
+  "containerEnv": {
+    "CHROME_BIN": "/usr/bin/chromium-browser"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint"]
+    }
+  },  
+  "forwardPorts": [4200]
+}

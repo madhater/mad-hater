@@ -51,8 +51,11 @@ jobs:
             let [major, minor, patch] = tagName.replace('v', '').split('.').map(Number);
             if (incrementType === 'MAJOR') {
               major++;
+              minor = 0;
+              patch = 0;
             } else if (incrementType === 'MINOR') {
               minor++;
+              patch = 0;
             } else {
               patch++;
             }
