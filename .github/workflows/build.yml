@@ -23,9 +23,6 @@ jobs:
     - name: npm test
       run: npm run test:build
 
-    - name: npm run build
-      run: npm run build
-
     - name: Get Release Version
       id: release-version
       uses: actions/github-script@v7
@@ -65,10 +62,12 @@ jobs:
             return '1.0.0';
           }
 
-    - name: Add version to output
+    - name: Add version to index.html
       run: |
-        echo $'\n'"<!-- Version ${{ steps.release-version.outputs.result }} -->" >> dist/mad-hater/browser/index.html
-        echo $'\n'"<!-- Version ${{ steps.release-version.outputs.result }} -->" >> dist/mad-hater/browser/index.csr.html
+        sed -i 's/{{ version }}/${{ steps.release-version.outputs.result }}/g' src/index.html
+        
+    - name: npm run build
+      run: npm run build
 
     - name: Add package.json
       run: |
