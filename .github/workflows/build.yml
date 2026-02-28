@@ -65,6 +65,11 @@ jobs:
             return '1.0.0';
           }
 
+    - name: Add version to output
+      run: |
+        echo $'\n'"<!-- Version ${{ steps.release-version.outputs.result }} -->" >> dist/mad-hater/browser/index.html
+        echo $'\n'"<!-- Version ${{ steps.release-version.outputs.result }} -->" >> dist/mad-hater/browser/index.csr.html
+
     - name: Add package.json
       run: |
         cat > dist/mad-hater/package.json << EOF
